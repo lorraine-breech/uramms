@@ -1,0 +1,53 @@
+.flex-container {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 300px;   
+}
+
+.login-card-content {
+    width: 100%;
+}
+
+.login-card-header {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.login-card-field {
+    width: 100%;
+}
+
+.login-button-field {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.login-button {
+    width: 100px;
+}
+
+.left-card {
+    margin-right: 10px;
+}
+
+.note-card {
+    margin-top: 20px;
+    width: 300px;
+}
+
+

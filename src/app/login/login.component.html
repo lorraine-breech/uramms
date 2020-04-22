@@ -1,0 +1,61 @@
+<div>
+    <mat-toolbar color="primary">
+        <span>UPM-URAMMS</span>
+    </mat-toolbar> 
+
+    <main class="flex-container">
+        <div>
+            <mat-card class="left-card mat-elevation-z0">
+                <mat-card-content>
+                    <h2>
+                        University of the Philippines Mindanao - Undergraduate Research Activities Management and Monitoring System (UPM-URAMMS)
+                    </h2>
+                    <p> is a system built to help the students and faculty members of the university in managing and monitoring research activities. 
+                        It uses the technology something.
+                    </p>
+                    <p> 
+                        Connect with the people related in your Research. Make and respond to requests online.  And many more!
+                    </p>
+                    <p> 
+                        This system is developed as the special problem of Lorraine Breech G. Barabat.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div>
+            <mat-card class="login-card mat-elevation-z3" tabIndex="0"> 
+                <mat-card-header class="login-card-header">
+                    <mat-card-title>Login</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="login-card-content">
+                    <form  class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <mat-form-field class="login-card-field" appearance="outline">
+                                <mat-label>Username</mat-label>
+                            <input matInput class="input-username" formControlName="username">
+                            <mat-icon matSuffix>perm_identity</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field class="login-card-field" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput class="input-password" [type]="hide ? 'password' : 'text'" formControlName="password">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]=" 'Hide password' " [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <br>
+                        <mat-card-actions class="login-button-field" >
+                                <button  mat-raised-button class="login-button" click="login()" color="primary" >Login</button>
+                        </mat-card-actions>
+                    </form>         
+                </mat-card-content>  
+            </mat-card>
+            <mat-card class="note-card mat-elevation-z2">
+                <mat-card-content>
+                    <p>NOTE: If you don't have an account yet, you can request one from the IT Office.</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        
+    </main>
+</div>
