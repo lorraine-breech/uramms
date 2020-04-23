@@ -19,22 +19,18 @@
     width: 100%;
 }
 
-.login-card-header {
+.flex-container-center-center {
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: center;
 }
 
+h2 {
+    font-weight: 500;
+}
 .login-card-field {
     width: 100%;
-}
-
-.login-button-field {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
 }
 
 .login-button {
