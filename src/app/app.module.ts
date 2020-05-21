@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule,
+    MaterialModule, 
     SuperuserModule
   ],
   providers: [],
