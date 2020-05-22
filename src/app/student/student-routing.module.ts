@@ -4,11 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentComponent } from './student.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { RequestListComponent } from './pages/requests/request-list/request-list.component';
+<<<<<<< HEAD
+=======
+import { RequestDetailComponent } from './pages/requests/request-detail/request-detail.component';
+>>>>>>> login-auth-routing
 import { RequestsComponent } from './pages/requests/requests.component';
 import { MyCalendarComponent } from './pages/my-calendar/my-calendar.component';
 import { MyStudyComponent } from './pages/my-study/my-study.component';
 import { MyPanelComponent } from './pages/my-panel/my-panel.component';
+<<<<<<< HEAD
 import { RequestDetailsComponent } from './pages/requests/request-details/request-details.component';
+=======
+>>>>>>> login-auth-routing
 
 const studentRoutes: Routes = [
   {
