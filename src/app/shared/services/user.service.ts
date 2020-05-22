@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { tap, catchError } from 'rxjs/operators';
 import { UserWToken } from '../models/user-with-token';
+import { Student } from '../models/student';
 
 @Injectable({
   providedIn: 'root'
@@ -12,41 +13,41 @@ import { UserWToken } from '../models/user-with-token';
 export class UserService {
   private userUrl ='api/user';
   private usersUrl ='api/users';
-  private loginUrl = 'api/user/login';
   private currentUser: User;
+  private jwtoken: String;
+  private currentStudentUser: Student;
+
   constructor(
     private httpClient: HttpClient,
     private router: Router
   ) { }
 
-  
-
-  logIn(username: string, password: string): Observable<UserWToken> {
-    console.log("Entered Login Service.");
-    const url = this.loginUrl;
-
-    let body = {
-        username: username,
-        password: password
-    }
-
-    return this.httpClient.post(url, body).pipe(
-        tap(data => {
-            if (data) {
-              let userWT = new UserWToken(data);
-              console.log("UserWT: " + JSON.stringify(userWT));
-              console.log("Token: " + userWT.token);
-              this.currentUser = new User(userWT.getUser());
-              console.log("Current User: " + JSON.stringify(this.currentUser));
-              //localStorage.setItem('currentUser', JSON.stringify(data));
-            }
-        }),
-        catchError(this.handleError<any>(`logIn username=${username}`))
-    );  
+  setCurrentStudentUser(student: Student){
+    this.currentStudentUser = student;
   }
 
-  
+  getCurrentStudentUser(): Student{
+    return this.currentStudentUser;
+  }
 
+  setCurrentUser(user: User){
+    this.currentUser = new User(user);
+  }
+
+  getCurrentUser(): User{
+    return this.currentUser;
+  }
+
+  setJWToken(token: String){
+    localStorage.removeItem('jwtoken');
+
+    this.jwtoken = new String(token);
+    localStorage.setItem('jwtoken', JSON.stringify(this.jwtoken));
+  }
+
+  getJWToken(): String{
+    return this.jwtoken;
+  }
 
   //below is unmodified code
   /**
@@ -69,37 +70,4 @@ export class UserService {
     };
   }
 
-
-  /**
-   * Lets the user log in (if user enters valid username and password) and be able to navigate to the correct pages
-   * @param username username input of the user logging in
-   * @param password password input of the user logging in
-   */
-
-  /*
-  logIn(username: string, password: string): Observable<User> {
-
-    const url = this.loginUrl;
-
-    let body = {
-        user_username: username,
-        user_password: password
-    }
-
-    
-    return this.httpClient.post(url, body, {observe: 'response'}).pipe(
-      
-        tap(user => {
-            if (user) {
-              let token = 
-                this.currentUser = new User(resp.body.doc);
-                localStorage.setItem('currentUser', JSON.stringify(doc));
-            }
-          return doc; //should return the whole response object
-        }),
-        catchError(this.handleError<any>(`logIn user_name=${username}`))
-        
-      );
-  }
-  */
 }

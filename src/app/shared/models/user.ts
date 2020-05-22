@@ -26,5 +26,12 @@ export class User {
       return this.username;
     }
 
+    getUserType(){
+      return this.userType;
+    }
+
+    getUserTypeId(){
+      return this.userTypeId;
+    }
     
 }

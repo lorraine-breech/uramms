@@ -2,7 +2,7 @@ import { User } from './user';
 
 export class UserWToken {
     private user: User;
-    public token: String;
+    private token: String;
 
     constructor(
         user?: any
@@ -18,5 +18,9 @@ export class UserWToken {
 
     public getUser(){
       return this.user;
+    }
+
+    public getToken(){
+      return this.token;
     }
 }

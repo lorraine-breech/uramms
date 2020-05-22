@@ -18,21 +18,21 @@ export class StudentService {
 
 
   getStudent(student_id): Observable<Student> {
-    const url = this.studentsUrl;
+    const url = `${this.studentsUrl}/${student_id}`;
     
-		let params = new HttpParams().set('id', student_id);
+		let params = new HttpParams().set('studentId', student_id);
 
 		return this.httpClient.get<Student>(url, {
 			params: params
 		}).pipe(
 			tap(data => {
-
+        console.log(JSON.stringify(data));
 			}),
 			catchError(this.handleError<Student>(`getStudent student_id=${student_id}`))
 		);
   }
   
-
+  
   //below is unmodified code
   /**
    * Handle Http operation that failed.

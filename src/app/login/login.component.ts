@@ -33,46 +33,46 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   onSubmit(){
     let username = this.loginForm.value.username;
     let password = this.loginForm.get('password').value;
 
     console.log("WELCOME!");
-    this.userService.logIn(username, password)
+    this.authService.logIn(username, password)
       .subscribe(user => {
         if(user){
           let userWT = new UserWToken(user);
-          this.user = new User(userWT.getUser());
-          console.log("Log In component Token: " + userWT.token);
-          console.log("Username: " + this.user.getUsername());
+          this.userService.setCurrentUser(new User(userWT.getUser()));
+          this.userService.setJWToken(new String(userWT.getToken()));
 
+          this.user = new User(this.userService.getCurrentUser());
           //subscribe to get specific user document
-          //check userType
-          //get the specific user document with the appropiate service
+          this.redirect();
         } else{
           console.log("Auth Failed");
         }
-      })
+      });
+  }
 
-    //login function here
+  private redirect(){
+    let redirectUrl = '/login';
+    let userType = 'student';
+    //let userType = this.user.getUserType();
+    
+    if(userType == 'student'){
+      redirectUrl = '/student/requests';
+    } else if(userType == 'panel member'){
+      redirectUrl = '/panel-member/requests';  
+    }
 
-    this.authService.login().subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        // Usually you would use the redirect URL from the auth service.
-        // However to keep the example simple, we will always redirect to `/student`.
-        const redirectUrl = '/student/requests';
+    // Set our navigation extras object
+    // that passes on our global query params and fragment
+    let navigationExtras: NavigationExtras = {
+      queryParamsHandling: 'preserve',
+      preserveFragment: true
+    };
 
-        // Set our navigation extras object
-        // that passes on our global query params and fragment
-        let navigationExtras: NavigationExtras = {
-          queryParamsHandling: 'preserve',
-          preserveFragment: true
-        };
-
-        // Redirect the user
-        this.router.navigate([redirectUrl], navigationExtras);
-      }
-    });
+    // Redirect the user
+    this.router.navigate([redirectUrl], navigationExtras);
   }
 }
