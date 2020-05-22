@@ -5,18 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material.module';
 import { SuperuserModule } from './superuser/superuser.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HttpClientModule,
-    StudentComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule, 
-    SuperuserModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
