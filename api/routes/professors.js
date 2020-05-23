@@ -58,8 +58,38 @@ router.get('/:professorId', (req, res, next) => {
                 }
             });
         } else{
-            res.status(404).json({message: "No entry for the given ID."});
+            res.status(404).json({ message: "No entry for the given ID." });
         }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: err });
+    })
+});
+
+router.post('/', (req, res, next) => {
+    const student = new Student({
+        _id: new mongoose.Types.ObjectId(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        studyId: req.body.studyId
+    });
+    student
+    .save()
+    .then(result => {
+        res.status(201).json({
+            message: "Handling POST request to /students",
+            createdStudent: {
+                firstName: result.firstName,
+                lastName: result.lastName,
+                studyId: result.studyId,
+                _id: result._id,
+                request: {
+                    type: 'POST',
+                    url: "http://localhost:3000/api/students/" + result._id
+                }
+            }
+        });
     })
     .catch(err => {
         console.log(err);

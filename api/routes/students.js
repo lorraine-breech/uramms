@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const checkAuth = require('../middleware/check-auth');
 
 const Student = require('../data-models/student');
 
@@ -64,7 +65,7 @@ router.post('/', (req, res, next) => {
     })
 });
 
-router.get('/:studentId', (req, res, next) => {
+router.get('/:studentId', checkAuth, (req, res, next) => {
     const id = req.params.studentId;
     Student.findById(id)
     .select('-__v')
@@ -74,6 +75,7 @@ router.get('/:studentId', (req, res, next) => {
         if(doc){
             res.status(200).json({
                 student: doc,
+                userdata: req.userdata,
                 request: {
                     type: 'GET',
                     decription: 'Get all students',
@@ -90,7 +92,7 @@ router.get('/:studentId', (req, res, next) => {
     })
 });
 
-router.patch('/:studentId', (req, res, next) => {
+router.patch('/:studentId',  (req, res, next) => {
     const id = req.params.studentId;
     const updateOps =  {};
     for  (const ops of req.body) {

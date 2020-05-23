@@ -5,6 +5,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { UserWToken } from '../shared/models/user-with-token';
 import { User } from '../shared/models/user';
+import { StudentService } from '../shared/services/student.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private studentService: StudentService
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +48,23 @@ export class LoginComponent implements OnInit {
           this.userService.setJWToken(new String(userWT.getToken()));
 
           this.user = new User(this.userService.getCurrentUser());
-          //subscribe to get specific user document
+          //subscribe to get specific user document      
+          //let userType = this.user.getUserType();
+          let userType = 'student';
+          
+          if(userType == 'student'){
+
+            this.studentService.getStudent('5eb58c5c5389972040fbf46b')
+             .subscribe( data => {
+             console.log(JSON.stringify(data));
+            }); 
+
+          } else if(userType == 'professor'){
+
+            
+          }
+
+          
           this.redirect();
         } else{
           console.log("Auth Failed");

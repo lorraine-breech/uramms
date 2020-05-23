@@ -7,15 +7,15 @@ export class Student {
     private year: number;
 
     constructor(
-        user?: any
+        student?: any
     ){
-        if (user) {
-            this._id = user._id;
-            this.firstName = user.firstName ? user.firstName : "";
-            this.middleName = user.middleName ? user.middleName : "";
-            this.lastName = user.lastName ? user.lastName : "" ;
-            this.studentNumber = user.studentNumber ? user.studentNumber : "";
-            this.year = user.year ? user.year : null;
+        if (student) {
+            this._id = student._id;
+            this.firstName = student.firstName ? student.firstName : "";
+            this.middleName = student.middleName ? student.middleName : "";
+            this.lastName = student.lastName ? student.lastName : "" ;
+            this.studentNumber = student.studentNumber ? student.studentNumber : "";
+            this.year = student.year ? student.year : null;
           } else {
             this.firstName = "";
             this.middleName = "";

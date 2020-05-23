@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material.module';
 import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './shared/hepers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule, 
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
