@@ -15,10 +15,21 @@ db.once("open", function() {
     console.log("Connection Successful!");
 });
 
-const studyRoutes = require('./routes/studies');
+const userRoutes = require('./routes/users');
+const courseRoutes = require('./routes/courses');
+const departmentRoutes = require('./routes/departments');
+const collegeRoutes = require('./routes/colleges');
 const studentRoutes = require('./routes/students');
-const usersRoutes = require('./routes/users');
-const userRoutes = require('./routes/user');
+const professorRoutes = require('./routes/professors');
+const requestRoutes = require('./routes/requests');
+const apmRequestRoutes = require('./routes/apmrequests');
+const capRequestRoutes = require('./routes/caprequests');
+const psRequestRoutes = require('./routes/psrequests');
+const cpmRequestRoutes = require('./routes/cpmrequests');
+const paRequestRoutes = require('./routes/parequests');
+const pmAccountRoutes = require('./routes/panel-member-accounts');
+const studyRoutes = require('./routes/studies');
+const superUserRoutes = require('./routes/superusers');
 
 
 app.use(morgan("dev"));
@@ -42,11 +53,22 @@ app.use((req, res, next) => {
 });
 
 //Routes
-app.use('/studies', studyRoutes);
-app.use('/students', studentRoutes);
-app.use('/users', usersRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 
+app.use('/courses', courseRoutes);
+app.use('/departments', departmentRoutes);
+app.use('/colleges', collegeRoutes);
+app.use('/students', studentRoutes);
+app.use('/professors', professorRoutes);
+app.use('/requests', requestRoutes);
+app.use('/apm-requests', apmRequestRoutes);
+app.use('/cap-requests', capRequestRoutes);
+app.use('/ps-requests', psRequestRoutes);
+app.use('/cpm-requests', cpmRequestRoutes);
+app.use('/pa-requests', paRequestRoutes);
+app.use('/panel-member-accounts', pmAccountRoutes);
+app.use('/studies', studyRoutes);
+app.use('/super-users', superUserRoutes);
 
 app.use((req, res, next) =>{
     const error = new Error("Not Found");

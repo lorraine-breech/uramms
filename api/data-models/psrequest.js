@@ -6,9 +6,27 @@ const psRequestSchema = mongoose.Schema({
     presentationDate: { type: Date, required: true },
     presentationTime: { type: String, required: true },
     presentationPlace: { type: String, required: true },
-    /*
-        3 more fields here
-    */
+    accomplishmentReport: [{
+        professorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Professor' },
+        role: String,
+        response: String,
+        remarks: String,
+        date: Date
+    }],
+    postponeRequest: {
+        newDate: Date,
+        newTime: String,
+        newPlace: String,
+        responses: [{
+            professorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Professor' },
+            role: String,
+            response: String,
+            remarks: String,
+            date: Date
+        }],
+        dateCreated: Date 
+    },
+    isCanceled: Boolean,
     canceledReason: String
 });
 

@@ -5,9 +5,12 @@ const studySchema = mongoose.Schema({
     title: String,
     description: String,
     researchStatus: { type: String, required: true },
+    departmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Department' },
+    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: 'College' }
     /*
-        4 more fields here
+        2 more fields here : manuscript and proposal file fields
     */
+    
 });
 
 module.exports = mongoose.model('Study', studySchema, 'studies');

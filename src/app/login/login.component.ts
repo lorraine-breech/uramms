@@ -49,8 +49,7 @@ export class LoginComponent implements OnInit {
 
           this.user = new User(this.userService.getCurrentUser());
           //subscribe to get specific user document      
-          //let userType = this.user.getUserType();
-          let userType = 'student';
+          let userType = this.user.getUserType();
           
           if(userType == 'student'){
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const professorSchema = mongoose.Schema({
+const superUserSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     firstName: { type: String, required: true },
     middleName: String,
@@ -9,10 +9,7 @@ const professorSchema = mongoose.Schema({
     position: String,
     title: String,
     departmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Department'},
-    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: 'College' },
-    panelMemberAccountId: { type: mongoose.Schema.Types.ObjectId, ref: 'PMAccount'},
-    otherUserAccountType: String
-    //calendar here
+    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: 'College' }
 });
 
-module.exports = mongoose.model('Professor', professorSchema, 'professors');
+module.exports = mongoose.model('SuperUser', superUserSchema, 'superusers');

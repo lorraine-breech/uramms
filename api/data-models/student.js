@@ -2,20 +2,23 @@ const mongoose = require('mongoose');
 
 const studentSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    firstName: String,
+    firstName: { type: String, required: true },
     middleName: String,
     lastName: { type: String, required: true },
-    studyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Study', required: true },
-    /*
+    studyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Study'},
     studentNumber: { type: String, required: true },
     year: { type: Number, required: true },
-    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true},
-    departmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true},
-    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: 'College', required: true},
-    //panel field of embedded object here
-    researchStatus: { type: String, required: true }
+    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course'},
+    departmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Department'},
+    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: 'College'},
+    panel: {
+        adviserId: { type: mongoose.Schema.Types.ObjectId, ref: 'Professor' },
+        coadviserId: { type: mongoose.Schema.Types.ObjectId, ref: 'Professor' },
+        panelistIds: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Professor' } ]
+    },
+    researchStatus: { type: String }
     //calendar field here
-    */
+    
 });
 
 module.exports = mongoose.model('Student', studentSchema, 'students');
